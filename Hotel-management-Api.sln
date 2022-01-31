@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel-management-Api", "Hotel-management-Api\Hotel-management-Api.csproj", "{E8829644-1885-4033-8307-25CABBE4B3CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel-Management-Api", "Hotel-management-Api\Hotel-Management-Api.csproj", "{E8829644-1885-4033-8307-25CABBE4B3CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
