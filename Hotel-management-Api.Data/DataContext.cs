@@ -12,5 +12,10 @@ namespace Hotel_management_Api.Data
 
         }
         public DbSet<Room> Room { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }

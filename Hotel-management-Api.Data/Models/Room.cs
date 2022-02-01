@@ -7,7 +7,7 @@ namespace Hotel_management_Api.Models
 {
     public class Room
     {
-        public string RoomId { get; set; }
+        public string RoomId { get; set; } = Guid.NewGuid().ToString();
         public string RoomType { get; set; }
         public int RoomNumber { get; set; }
     }
