@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <ProjectReference Include="..\Hotel-management-Api.Data\Hotel-management-Api.Data.csproj" />
   </ItemGroup>
 
 </Project>
