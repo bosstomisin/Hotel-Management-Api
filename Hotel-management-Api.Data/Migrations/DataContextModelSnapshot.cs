@@ -16,6 +16,60 @@ namespace Hotel_management_Api.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.13");
 
+            modelBuilder.Entity("Hotel_management_Api.Data.Models.Address", b =>
+                {
+                    b.Property<string>("AddressId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("State")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AddressId");
+
+                    b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("Hotel_management_Api.Data.Models.Booking", b =>
+                {
+                    b.Property<string>("BookingId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Guests")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RoomId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("TotalFee")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Booking");
+                });
+
             modelBuilder.Entity("Hotel_management_Api.Models.Room", b =>
                 {
                     b.Property<string>("RoomId")
@@ -27,12 +81,7 @@ namespace Hotel_management_Api.Data.Migrations
                     b.Property<string>("RoomType")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("RoomId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Room");
                 });
@@ -44,6 +93,9 @@ namespace Hotel_management_Api.Data.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("AddressId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -96,6 +148,8 @@ namespace Hotel_management_Api.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -235,11 +289,28 @@ namespace Hotel_management_Api.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Hotel_management_Api.Models.Room", b =>
+            modelBuilder.Entity("Hotel_management_Api.Data.Models.Booking", b =>
                 {
-                    b.HasOne("Hotel_management_Api.Models.User", null)
-                        .WithMany("Rooms")
+                    b.HasOne("Hotel_management_Api.Models.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId");
+
+                    b.HasOne("Hotel_management_Api.Models.User", "User")
+                        .WithMany("Bookings")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Room");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Hotel_management_Api.Models.User", b =>
+                {
+                    b.HasOne("Hotel_management_Api.Data.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -295,7 +366,7 @@ namespace Hotel_management_Api.Data.Migrations
 
             modelBuilder.Entity("Hotel_management_Api.Models.User", b =>
                 {
-                    b.Navigation("Rooms");
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }
