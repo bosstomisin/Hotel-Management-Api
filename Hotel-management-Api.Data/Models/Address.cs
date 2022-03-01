@@ -8,7 +8,7 @@ namespace Hotel_management_Api.Data.Models
 {
     public class Address
     {
-        public string AddressId { get; set; }
+        public string AddressId { get; set; } = Guid.NewGuid().ToString();
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
