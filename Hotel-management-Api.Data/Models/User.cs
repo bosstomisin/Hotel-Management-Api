@@ -11,7 +11,6 @@ namespace Hotel_management_Api.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public Address AddressId { get; set; }
         public Address Address { get; set; }
         public List<Booking> Bookings { get; set; } = new List<Booking>();
     }
