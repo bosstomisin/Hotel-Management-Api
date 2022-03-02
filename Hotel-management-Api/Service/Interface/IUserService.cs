@@ -1,4 +1,5 @@
 ﻿using Hotel_management_Api.Data.Dto.Request;
+using Hotel_management_Api.Data.Dto.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace Hotel_management_Api.Service.Interface
 {
     public interface IUserService
     {
-        Task<bool> AddUser(UserRequest user);
+        Task<BaseResponse<UserResponse>> AddUser(UserRequest user);
     }
 }

@@ -1434,9 +1434,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\Hotel-Management-Api.csproj",
-      "projectName": "Hotel-Management-Api",
-      "projectPath": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\Hotel-Management-Api.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\Hotel-Management-Api.Core.csproj",
+      "projectName": "Hotel-Management-Api.Core",
+      "projectPath": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\Hotel-Management-Api.Core.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\obj\\",
       "projectStyle": "PackageReference",

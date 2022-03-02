@@ -1,4 +1,5 @@
-﻿using Hotel_management_Api.Data.Repository.Interface;
+﻿using Hotel_management_Api.Data.Dto.Response;
+using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.Models;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,15 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             _ctx = ctx;
         } 
 
-        public async Task<bool> AddUser(User user)
+        public async Task<User> AddUser(User user)
         {
            _ctx.Add(user);
             var addUser = await _ctx.SaveChangesAsync();
             if (addUser < 1)
             {
-                return false;
+                return null;
             }
-            return true;
+            return user;
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BRn80zn5Rp9dGQuM8De7ZrZZR/jk0cvqmH9ORysQEGtniBytz85PsgDlZByr8HjdHrhX+nf3H5SnrI5UXtIO4w==",
+  "dgSpecHash": "EKc/yUt8Jf58N9P2Uk6NvxTbRUlrFtvNLysCwgEPo3scP4UPlunCkatboKslbTLPPLYuqUFGGbx/ndjiJ4W+PA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\Hotel-Management-Api.csproj",
+  "projectFilePath": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\Hotel-Management-Api.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dell\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.13\\microsoft.aspnetcore.cryptography.internal.5.0.13.nupkg.sha512",

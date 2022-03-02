@@ -9,6 +9,6 @@ namespace Hotel_management_Api.Data.Repository.Interface
 {
     public interface IUserRepo
     {
-        Task<bool> AddUser(User user);
+        Task<User> AddUser(User user);
     }
 }
