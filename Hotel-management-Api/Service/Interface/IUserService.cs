@@ -8,6 +8,6 @@ namespace Hotel_management_Api.Service.Interface
 {
     public interface IUserService
     {
-        //Task<BaseResponse<UserResponse>> AddUser(UserRequest user);
+        Task<BaseResponse<UserResponse>> RegisterUser(UserRequest user);
     }
 }

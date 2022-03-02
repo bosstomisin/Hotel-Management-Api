@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Data.Models
 {
-    public enum RoomType
+    public enum RoomTypes
     {
        Regular,
        Classic,

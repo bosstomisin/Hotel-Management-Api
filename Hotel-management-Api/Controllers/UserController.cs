@@ -19,11 +19,11 @@ namespace Hotel_management_Api.Controllers
         {
             _userService = userService;
         }
-        //[HttpPost("add-user")]
-        //public async Task<BaseResponse<UserResponse>> AddUser(UserRequest user)
-        //{
-        //    return await _userService.AddUser(user);
-             
-        //}
+        [HttpPost("add-user")]
+        public async Task<BaseResponse<UserResponse>> RegisterUser(UserRequest user)
+        {
+            return await _userService.RegisterUser(user);
+
+        }
     }
 }

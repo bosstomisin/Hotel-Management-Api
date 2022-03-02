@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hotel_management_Api.Data.Dto;
+using Hotel_management_Api.Data.Models;
 using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.Models;
 using Hotel_management_Api.Service.Interface;
@@ -28,6 +29,7 @@ namespace Hotel_management_Api.Service.Implementation
             }
 
             var newRoom = _map.Map<Room>(room);
+           //newRoom.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
 
 
 
@@ -35,7 +37,7 @@ namespace Hotel_management_Api.Service.Implementation
             var roomResponse = _map.Map<RoomResponse>(result);
          
 
-            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "User Successfully added", Success = true, StatusCode = 200 };
+            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room Successfully added", Success = true, StatusCode = 201 };
 
         }
     }

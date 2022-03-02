@@ -9,7 +9,7 @@ namespace Hotel_management_Api.Data.Dto
 {
     public class RoomRequest
     {
-        public string RoomType { get; set; }
+        public RoomTypes RoomType { get; set; }
         public int RoomNumber { get; set; }
     }
 }
