@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Hotel_management_Api.Data.Dto.Request;
-using Hotel_management_Api.Data.Dto.Response;
+using Hotel_management_Api.Data.Dto;
 using Hotel_management_Api.Data.Models;
 using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.Models;
@@ -14,41 +13,35 @@ namespace Hotel_management_Api.Service.Implementation
 {
     public class UserService : IUserService 
     {
-        private readonly IUserRepo _userRepo;
+        //private readonly IRoomRepo<User> _userRepo;
         private readonly IMapper _map;
 
-        public UserService(IUserRepo userRepo, IMapper map )
+        public UserService( IMapper map )
         {
-            _userRepo = userRepo;
+           // _userRepo = userRepo;
             _map = map;
         }
-        public async Task<BaseResponse<UserResponse>> AddUser(UserRequest user)
-        {
-            var returnDto = new BaseResponse<UserResponse>();
-            if (user == null)
-            {
-                return new BaseResponse<UserResponse>(){Data = null, Message  = "Model cannot be empty", Success = false, StatusCode = 204};
-            }
-            var newUser = new User() { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, PhoneNumber = user.PhoneNumber};
-            //var address = new Address() { City = user.City, State = user.State, Street = user.Street };
+        //public async Task<BaseResponse<UserResponse>> AddUser(UserRequest user)
+        //{
+        //    if (user == null)
+        //    {
+        //        return new BaseResponse<UserResponse>(){Data = null, Message  = "Model cannot be empty", Success = false, StatusCode = 204};
+        //    }
+            
+        //    var newUser = _map.Map<User>(user);
 
-            //newUser.Address.Street = address.Street;
-            //newUser.Address.City = address.City;
-            //newUser.Address.State = address.State;
+        //    var address = new Address() { City = user.City, State = user.State, Street = user.Street };
+        //    newUser.Address = address;
+            
 
-            var result = await _userRepo.AddUser(newUser);
-            var ret = _map.Map<UserResponse>(result);
-            //returnDto.Data.City = result.Address.City;
-            //returnDto.Data.Street = result.Address.Street;
-            //returnDto.Data.State = result.Address.State;
-            //returnDto.Data.FirstName = result.FirstName;
-            //returnDto.Data.LastName = result.LastName;
-            //returnDto.Data.PhoneNumber = result.PhoneNumber;
-            //returnDto.Data.Id = result.Id;
-            //returnDto.Data.Email = result.Email;
+        //    //var result = await _userRepo.AddUser(newUser);
+        //    var userResponse = _map.Map<UserResponse>(result);
+        //    userResponse.Street = result.Address.Street;
+        //    userResponse.State = result.Address.State;
+        //    userResponse.State = result.Address.State;
         
-            return new BaseResponse<UserResponse>() { Data = ret, Message = "Model cannot be empty", Success = true, StatusCode = 200 }; 
+        //    return new BaseResponse<UserResponse>() { Data = userResponse, Message = "User Successfully added", Success = true, StatusCode = 200 }; 
 
-        }
+        //}
     }
 }

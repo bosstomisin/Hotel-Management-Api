@@ -1,4 +1,4 @@
-﻿using Hotel_management_Api.Data.Dto.Response;
+﻿using Hotel_management_Api.Data.Dto;
 using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.Models;
 using System;
@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Data.Repository.Implementation
 {
-    public class UserRepo : IUserRepo
+    public class GenericRepo<T> : IRepository<T>where T : class
     {
         private readonly DataContext _ctx;
-        public UserRepo(DataContext ctx)
+        public GenericRepo(DataContext ctx)
         {
             _ctx = ctx;
         } 
 
-        public async Task<User> AddUser(User user)
+        public async Task<T> AddRoom(T model)
         {
-           _ctx.Add(user);
-            var addUser = await _ctx.SaveChangesAsync();
-            if (addUser < 1)
+           await _ctx.Set<T>().AddAsync(model);
+            var addResponse = await _ctx.SaveChangesAsync();
+            if (addResponse < 1)
             {
                 return null;
             }
-            return user;
+            return model;
         }
     }
 }

@@ -2,6 +2,7 @@ using Hotel_management_Api.Data;
 using Hotel_management_Api.Data.Repository.Implementation;
 using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.MapperProfile;
+using Hotel_management_Api.Models;
 using Hotel_management_Api.Service.Implementation;
 using Hotel_management_Api.Service.Interface;
 using Microsoft.AspNetCore.Builder;
@@ -40,7 +41,10 @@ namespace Hotel_management_Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel_management_Api", Version = "v1" });
             });
             services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("Default")));
-            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IRepository<Room>, RoomRepo>();
+            services.AddScoped<IRoomRepo, RoomRepo>();
+            services.AddScoped<IRoomService, RoomService>();
+
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(MappingProfile));
         }

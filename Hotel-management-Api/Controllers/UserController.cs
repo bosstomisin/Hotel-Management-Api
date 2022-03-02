@@ -1,5 +1,4 @@
-﻿using Hotel_management_Api.Data.Dto.Request;
-using Hotel_management_Api.Data.Dto.Response;
+﻿using Hotel_management_Api.Data.Dto;
 using Hotel_management_Api.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +19,11 @@ namespace Hotel_management_Api.Controllers
         {
             _userService = userService;
         }
-        [HttpPost("add-user")]
-        public async Task<BaseResponse<UserResponse>> AddUser(UserRequest user)
-        {
-            return await _userService.AddUser(user);
+        //[HttpPost("add-user")]
+        //public async Task<BaseResponse<UserResponse>> AddUser(UserRequest user)
+        //{
+        //    return await _userService.AddUser(user);
              
-        }
+        //}
     }
 }
