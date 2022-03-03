@@ -48,7 +48,11 @@ namespace Hotel_management_Api
 
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(MappingProfile));
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
+            services.AddIdentity<AppUser, IdentityRole>(opt => {
+                opt.Password.RequiredLength = 7;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
 
         }
 
@@ -65,6 +69,8 @@ namespace Hotel_management_Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,5 +1,6 @@
 ﻿using Hotel_management_Api.Data.Dto;
 using Hotel_management_Api.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,6 +21,7 @@ namespace Hotel_management_Api.Controllers
             _roomService = roomService;
         }
 
+        [Authorize]
         [HttpPost("add-room")]
         public async Task<BaseResponse<RoomResponse>> AddRoom(RoomRequest model)
         {

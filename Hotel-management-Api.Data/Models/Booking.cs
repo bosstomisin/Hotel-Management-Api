@@ -12,7 +12,6 @@ namespace Hotel_management_Api.Data.Models
     {
         [DisplayName("Id")]
         public string BookingId { get; set; }
-        //public Guid RoomID { get; set; }
         public Room Room { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime CheckIn { get; set; } = DateTime.Now;
@@ -22,7 +21,7 @@ namespace Hotel_management_Api.Data.Models
         //public bool Paid { get; set; }
        // public bool Completed { get; set; }
         //public Guid UserId { get; set; }
-        public  User User { get; set; }
+        public  AppUser User { get; set; }
        
     
 }

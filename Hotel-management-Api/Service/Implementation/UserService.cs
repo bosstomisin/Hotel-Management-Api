@@ -15,10 +15,10 @@ namespace Hotel_management_Api.Service.Implementation
     public class UserService : IUserService 
     {
         private readonly IMapper _map;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserService( IMapper map, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public UserService( IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _map = map;
             _userManager = userManager;
@@ -36,7 +36,7 @@ namespace Hotel_management_Api.Service.Implementation
                 return new BaseResponse<UserResponse>() { Data = null, Message = "Email already exist", Success = false, StatusCode = 400 };
             }
 
-            var newUser = _map.Map<User>(user);
+            var newUser = _map.Map<AppUser>(user);
             newUser.UserName = user.Email;
 
             var address = new Address() { City = user.City, State = user.State, Street = user.Street };
@@ -67,8 +67,6 @@ namespace Hotel_management_Api.Service.Implementation
             userResponse.City = newUser.Address.City;
             userResponse.Street = newUser.Address.Street;
             userResponse.State = newUser.Address.State;
-
-
             return new BaseResponse<UserResponse>() { Data = userResponse, Message = "User Successfully created", Success = true, StatusCode = 200 };
 
         }

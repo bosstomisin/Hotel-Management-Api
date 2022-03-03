@@ -6,7 +6,7 @@ using System;
 
 namespace Hotel_management_Api.Data
 {
-    public class DataContext : IdentityDbContext<User>
+    public class DataContext : IdentityDbContext<AppUser>
     {
         public DataContext(DbContextOptions<DataContext> options ) : base(options)
         {

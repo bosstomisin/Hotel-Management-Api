@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Models
 {
-    public class User : IdentityUser
+    public class AppUser : IdentityUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

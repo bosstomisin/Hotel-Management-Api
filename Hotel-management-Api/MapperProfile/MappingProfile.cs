@@ -12,8 +12,8 @@ namespace Hotel_management_Api.MapperProfile
     {
         public MappingProfile()
         {
-            CreateMap<User, UserResponse>().ReverseMap();
-            CreateMap<UserRequest, User>().ReverseMap();
+            CreateMap<AppUser, UserResponse>().ReverseMap();
+            CreateMap<UserRequest, AppUser>().ReverseMap();
             CreateMap<Room, RoomResponse>().ReverseMap();
             CreateMap<RoomRequest, Room>().ReverseMap();
         }
