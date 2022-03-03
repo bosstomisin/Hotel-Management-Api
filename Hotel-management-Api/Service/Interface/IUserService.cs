@@ -9,5 +9,6 @@ namespace Hotel_management_Api.Service.Interface
     public interface IUserService
     {
         Task<BaseResponse<UserResponse>> RegisterUser(UserRequest user);
+        Task<BaseResponse<LoginResponse>> Login(LoginDto model);
     }
 }

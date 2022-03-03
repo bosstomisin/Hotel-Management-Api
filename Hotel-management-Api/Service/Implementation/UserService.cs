@@ -70,5 +70,10 @@ namespace Hotel_management_Api.Service.Implementation
             return new BaseResponse<UserResponse>() { Data = userResponse, Message = "User Successfully created", Success = true, StatusCode = 200 };
 
         }
+
+        public async Task<BaseResponse<LoginResponse>> Login(LoginDto model)
+        {
+
+        }
     }
 }
