@@ -17,12 +17,14 @@ namespace Hotel_management_Api.Service.Implementation
         private readonly IMapper _map;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public UserService( IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserService( IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
         {
             _map = map;
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
         public async Task<BaseResponse<UserResponse>> RegisterUser(UserRequest user)
         {
@@ -48,7 +50,7 @@ namespace Hotel_management_Api.Service.Implementation
             {
                 foreach (var error in createUser.Errors)
                 {
-                    errors += error.ToString() + "/n";
+                    errors += error.ToString() + "\n";
                 }
                 return new BaseResponse<UserResponse>() { Data = null, Message = errors, Success = false, StatusCode = 401 };
             }
@@ -73,7 +75,20 @@ namespace Hotel_management_Api.Service.Implementation
 
         public async Task<BaseResponse<LoginResponse>> Login(LoginDto model)
         {
-
+            if (model == null)
+            {
+                return new BaseResponse<LoginResponse>() { Data = null, Message = "Model cannot be empty", Success = false, StatusCode = 204 };
+            }
+            var getUser = await _userManager.FindByEmailAsync(model.Email);
+            if (getUser == null)
+            {
+                return new BaseResponse<LoginResponse>() { Data = null, Message = "Email not found", Success = false, StatusCode = 404 };
+            }
+            var signIn = await _signInManager.CheckPasswordSignInAsync(getUser, model.Password, false);
+            if (!signIn.Succeeded)
+            {
+                return new BaseResponse<LoginResponse>() { Data = null, Message = "Credentials not correct", Success = false, StatusCode = 404 };
+            }
         }
     }
 }
