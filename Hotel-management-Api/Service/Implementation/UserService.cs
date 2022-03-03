@@ -5,6 +5,7 @@ using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.Models;
 using Hotel_management_Api.Service.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +19,16 @@ namespace Hotel_management_Api.Service.Implementation
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IOptions<JWTData> _jwt;
 
-        public UserService( IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
+        public UserService( IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, 
+            SignInManager<AppUser> signInManager, IOptions<JWTData> jwt)
         {
             _map = map;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _jwt = jwt;
         }
         public async Task<BaseResponse<UserResponse>> RegisterUser(UserRequest user)
         {
@@ -79,16 +83,21 @@ namespace Hotel_management_Api.Service.Implementation
             {
                 return new BaseResponse<LoginResponse>() { Data = null, Message = "Model cannot be empty", Success = false, StatusCode = 204 };
             }
-            var getUser = await _userManager.FindByEmailAsync(model.Email);
-            if (getUser == null)
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
             {
                 return new BaseResponse<LoginResponse>() { Data = null, Message = "Email not found", Success = false, StatusCode = 404 };
             }
-            var signIn = await _signInManager.CheckPasswordSignInAsync(getUser, model.Password, false);
+            var signIn = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
             if (!signIn.Succeeded)
             {
                 return new BaseResponse<LoginResponse>() { Data = null, Message = "Credentials not correct", Success = false, StatusCode = 404 };
             }
+            var userRole = await _userManager.GetRolesAsync(user) as List<string>;
+            var token = JWTService.GenerateToken(user, userRole, _jwt);
+            var loginRespone = new LoginResponse() { Email = user.Email, Token = token, UserId = user.Id };
+            return new BaseResponse<LoginResponse>() { Data = loginRespone, Message = "Login Successful", Success = true, StatusCode = 200 };
+
         }
     }
 }

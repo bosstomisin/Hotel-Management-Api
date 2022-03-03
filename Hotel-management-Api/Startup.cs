@@ -66,7 +66,7 @@ namespace Hotel_management_Api
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("JWTConfigurations:SecretKey").Value)),
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("JWT:SecretKey").Value)),
                     ValidateIssuer = true,
                     ValidIssuer = Configuration.GetSection("JWTConfigurations:Issuer").Value,
                     ValidateAudience = true,

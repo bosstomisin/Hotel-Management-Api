@@ -64,3 +64,10 @@ C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\obj\Debug\n
 C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\obj\Debug\net5.0\Hotel-Management-Api.Core.genruntimeconfig.cache
 C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

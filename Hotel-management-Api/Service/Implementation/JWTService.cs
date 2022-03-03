@@ -15,7 +15,7 @@ namespace Hotel_management_Api.Service.Implementation
     public class JWTService
     {
        
-        public static string GenerateToken(AppUser user, string role, IOptions<JWTData> option)
+        public static string GenerateToken(AppUser user, List<string> roles, IOptions<JWTData> option)
         {
             var jwtData = option.Value;
             var claims = new List<Claim>
@@ -26,10 +26,10 @@ namespace Hotel_management_Api.Service.Implementation
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            //foreach (var role in userRoles)
-            //{
+            foreach (var role in roles)
+            {
                 claims.Add(new Claim(ClaimTypes.Role, role));
-            //}
+            }
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtData.SecretKey));
             var tokenDescriptor = new SecurityTokenDescriptor
