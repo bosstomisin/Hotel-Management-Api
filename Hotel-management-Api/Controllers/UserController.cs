@@ -25,5 +25,11 @@ namespace Hotel_management_Api.Controllers
             return await _userService.RegisterUser(user);
 
         }
+
+        [HttpPost("login")]
+        public async Task<BaseResponse<LoginResponse>> LoginUser(LoginDto model)
+        {
+            return await _userService.Login(model);
+        }
     }
 }

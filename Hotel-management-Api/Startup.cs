@@ -1,4 +1,5 @@
 using Hotel_management_Api.Data;
+using Hotel_management_Api.Data.Models;
 using Hotel_management_Api.Data.Repository.Implementation;
 using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.MapperProfile;
@@ -37,7 +38,7 @@ namespace Hotel_management_Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -50,7 +51,11 @@ namespace Hotel_management_Api
 
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(MappingProfile));
-            services.AddIdentity<AppUser, IdentityRole>(opt => {
+            services.Configure<JWTConfig>(Configuration.GetSection(JWTConfig.Data));
+            services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromHours(5));
+
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
                 opt.Password.RequiredLength = 7;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
@@ -66,13 +71,15 @@ namespace Hotel_management_Api
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("JWT:SecretKey").Value)),
-                    ValidateIssuer = true,
-                    ValidIssuer = Configuration.GetSection("JWTConfigurations:Issuer").Value,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration.GetSection("JWTConfigurations:Audience").Value
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("JWTConfig:SecretKey").Value)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
                 };
+
+
             });
+        
+
         }
 
 

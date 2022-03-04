@@ -19,16 +19,16 @@ namespace Hotel_management_Api.Service.Implementation
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly IOptions<JWTData> _jwt;
+        private readonly IOptions<JWTConfig> _jwt;
 
         public UserService( IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, 
-            SignInManager<AppUser> signInManager, IOptions<JWTData> jwt)
+            SignInManager<AppUser> signInManager, IOptions<JWTConfig> options)
         {
             _map = map;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
-            _jwt = jwt;
+            _jwt = options;
         }
         public async Task<BaseResponse<UserResponse>> RegisterUser(UserRequest user)
         {

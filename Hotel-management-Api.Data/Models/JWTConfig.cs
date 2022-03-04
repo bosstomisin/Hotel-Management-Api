@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Data.Models
 {
-    public class JWTData
+    public class JWTConfig
     {
-        public TimeSpan TokenLifeTime { get; set; }
-
+        public const string Data = "JWTConfig";
         public string SecretKey { get; set; }
 
-        public string Issuer { get; set; }
+        public TimeSpan TokenLifeTime { get; set; }
 
-        public string Audience { get; set; }
+
+       // public string Issuer { get; set; }
+
+      //  public string Audience { get; set; }
     }
 }

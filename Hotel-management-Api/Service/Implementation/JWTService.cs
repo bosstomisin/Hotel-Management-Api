@@ -15,7 +15,7 @@ namespace Hotel_management_Api.Service.Implementation
     public class JWTService
     {
        
-        public static string GenerateToken(AppUser user, List<string> roles, IOptions<JWTData> option)
+        public static string GenerateToken(AppUser user, List<string> roles, IOptions<JWTConfig> option)
         {
             var jwtData = option.Value;
             var claims = new List<Claim>
@@ -36,8 +36,8 @@ namespace Hotel_management_Api.Service.Implementation
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now + jwtData.TokenLifeTime,
-                Audience = jwtData.Issuer,
-                Issuer = jwtData.Issuer,
+               // Audience = jwtData.Issuer,
+                //Issuer = jwtData.Issuer,
                 SigningCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)
             };
             var tokenHandler = new JwtSecurityTokenHandler();
