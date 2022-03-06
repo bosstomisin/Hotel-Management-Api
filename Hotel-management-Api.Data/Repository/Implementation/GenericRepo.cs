@@ -17,7 +17,7 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             _ctx = ctx;
         } 
 
-        public async Task<T> AddRoom(T model)
+        public async Task<T> InsertRecord(T model)
         {
            await _ctx.Set<T>().AddAsync(model);
             var addResponse = await _ctx.SaveChangesAsync();
@@ -26,6 +26,11 @@ namespace Hotel_management_Api.Data.Repository.Implementation
                 return null;
             }
             return model;
+        }
+
+        public async Task<T> GetRecord(string id)
+        {
+            return await _ctx.Set<T>().FindAsync(id);
         }
     }
 }

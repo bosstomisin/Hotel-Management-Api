@@ -43,6 +43,29 @@ namespace Hotel_management_Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel_management_Api", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    BearerFormat = "JWT",
+                    Description = "Bearer authentication using JWT",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    Name = "Authorization"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                            new string[] {}
+                        }
+                    });
             });
             services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("Default")));
             services.AddScoped<IRepository<Room>, RoomRepo>();
@@ -78,7 +101,8 @@ namespace Hotel_management_Api
 
 
             });
-        
+            
+
 
         }
 

@@ -33,12 +33,26 @@ namespace Hotel_management_Api.Service.Implementation
 
 
 
-            var result = await _roomRepo.AddRoom(newRoom);
+            var result = await _roomRepo.InsertRecord(newRoom);
             var roomResponse = _map.Map<RoomResponse>(result);
          
 
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room Successfully added", Success = true, StatusCode = 201 };
 
         }
+
+        public async Task<BaseResponse<RoomResponse>> GetRoom(string id)
+        {
+            var room = await _roomRepo.GetRecord(id);
+            if (room == null)
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Room not found", Success = false, StatusCode = 404 };
+
+            }
+            var roomResponse = _map.Map<RoomResponse>(room);
+            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room succesfully fetched", Success = true, StatusCode = 201 };
+
+        }
+
     }
 }

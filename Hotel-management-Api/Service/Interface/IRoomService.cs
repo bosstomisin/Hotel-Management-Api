@@ -11,6 +11,6 @@ namespace Hotel_management_Api.Service.Interface
     {
         Task<BaseResponse<RoomResponse>> AddRoom(RoomRequest room);
 
-
+        Task<BaseResponse<RoomResponse>> GetRoom(string id);
     }
 }
