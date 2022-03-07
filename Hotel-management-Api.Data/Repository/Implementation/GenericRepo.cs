@@ -32,5 +32,13 @@ namespace Hotel_management_Api.Data.Repository.Implementation
         {
             return await _ctx.Set<T>().FindAsync(id);
         }
+
+        public async Task<bool> DeleteRecord(string id)
+        {
+            var getRecord = GetRecord(id).Result;
+            _ctx.Set<T>().Remove(getRecord);
+            return await _ctx.SaveChangesAsync() >=1;
+            
+        }
     }
 }

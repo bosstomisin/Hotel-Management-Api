@@ -29,10 +29,7 @@ namespace Hotel_management_Api.Service.Implementation
             }
 
             var newRoom = _map.Map<Room>(room);
-            //newRoom.RoomType = room.RoomType;
-
-
-
+          
             var result = await _roomRepo.InsertRecord(newRoom);
             var roomResponse = _map.Map<Room, RoomResponse>(result);
          
@@ -51,7 +48,23 @@ namespace Hotel_management_Api.Service.Implementation
             }
             var roomResponse = _map.Map<RoomResponse>(room);
             roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
-            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room succesfully fetched", Success = true, StatusCode = 201 };
+            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room succesfully fetched", Success = true, StatusCode = 200 };
+
+        }
+
+        public async Task<BaseResponse<bool>> DeleteRoom(string id)
+        {
+            var room = _roomRepo.GetRecord(id).Result;
+            if (room == null) 
+            {
+                return new BaseResponse<bool>() { Data = false, Message = "Room does not exist", Success = false, StatusCode = 404 };
+            }
+            var delete = await _roomRepo.DeleteRecord(id);
+            if (!delete)
+            {
+                return new BaseResponse<bool>() { Data = false, Message = "Room could not be deleted", Success = false, StatusCode = 404 };
+            }
+            return new BaseResponse<bool>() { Data = true, Message = "Room deleted successfully", Success = true, StatusCode = 200 };
 
         }
 

@@ -31,10 +31,16 @@ namespace Hotel_management_Api.Controllers
             return await _roomService.AddRoom(model);
         }
 
-        [HttpGet("getRoom/{id}")]
-        public async Task<BaseResponse<RoomResponse>> getRoom(string id)
+        [HttpGet("get-room/{id}")]
+        public async Task<BaseResponse<RoomResponse>> GetRoom(string id)
         {
             return await _roomService.GetRoom(id);
+        }
+
+        [HttpDelete("delete-room/{id}")]
+        public async Task<BaseResponse<bool>> DeleteRoom(string id)
+        {
+            return await _roomService.DeleteRoom(id);
         }
     }
 }

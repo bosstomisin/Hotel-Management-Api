@@ -10,5 +10,6 @@ namespace Hotel_management_Api.Data.Repository.Interface
     {
         Task<T> InsertRecord(T model);
         Task<T> GetRecord(string id);
+        Task<bool> DeleteRecord(string id);
     }
 }
