@@ -29,6 +29,7 @@ namespace Hotel_management_Api.Service.Implementation
             }
 
             var newRoom = _map.Map<Room>(room);
+            newRoom.RoomType = room.RoomType;
            //newRoom.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
 
 
@@ -50,6 +51,7 @@ namespace Hotel_management_Api.Service.Implementation
 
             }
             var roomResponse = _map.Map<RoomResponse>(room);
+            roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room succesfully fetched", Success = true, StatusCode = 201 };
 
         }
