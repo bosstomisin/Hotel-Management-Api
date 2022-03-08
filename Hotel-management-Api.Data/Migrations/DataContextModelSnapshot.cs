@@ -70,23 +70,23 @@ namespace Hotel_management_Api.Data.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("Hotel_management_Api.Models.Room", b =>
+            modelBuilder.Entity("Hotel_management_Api.Data.Models.RoomType", b =>
                 {
-                    b.Property<string>("RoomId")
+                    b.Property<string>("RoomTypeId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("RoomNumber")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("RoomType")
+                    b.Property<decimal>("BasePrice")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("RoomId");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Room");
+                    b.HasKey("RoomTypeId");
+
+                    b.ToTable("RoomType");
                 });
 
-            modelBuilder.Entity("Hotel_management_Api.Models.User", b =>
+            modelBuilder.Entity("Hotel_management_Api.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -159,6 +159,27 @@ namespace Hotel_management_Api.Data.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Hotel_management_Api.Models.Room", b =>
+                {
+                    b.Property<string>("RoomId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Available")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoomNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RoomTypeId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RoomId");
+
+                    b.HasIndex("RoomTypeId");
+
+                    b.ToTable("Room");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -295,7 +316,7 @@ namespace Hotel_management_Api.Data.Migrations
                         .WithMany()
                         .HasForeignKey("RoomId");
 
-                    b.HasOne("Hotel_management_Api.Models.User", "User")
+                    b.HasOne("Hotel_management_Api.Models.AppUser", "User")
                         .WithMany("Bookings")
                         .HasForeignKey("UserId");
 
@@ -304,13 +325,22 @@ namespace Hotel_management_Api.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Hotel_management_Api.Models.User", b =>
+            modelBuilder.Entity("Hotel_management_Api.Models.AppUser", b =>
                 {
                     b.HasOne("Hotel_management_Api.Data.Models.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("Hotel_management_Api.Models.Room", b =>
+                {
+                    b.HasOne("Hotel_management_Api.Data.Models.RoomType", "RoomType")
+                        .WithMany()
+                        .HasForeignKey("RoomTypeId");
+
+                    b.Navigation("RoomType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -324,7 +354,7 @@ namespace Hotel_management_Api.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Hotel_management_Api.Models.User", null)
+                    b.HasOne("Hotel_management_Api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -333,7 +363,7 @@ namespace Hotel_management_Api.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Hotel_management_Api.Models.User", null)
+                    b.HasOne("Hotel_management_Api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,7 +378,7 @@ namespace Hotel_management_Api.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hotel_management_Api.Models.User", null)
+                    b.HasOne("Hotel_management_Api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -357,14 +387,14 @@ namespace Hotel_management_Api.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Hotel_management_Api.Models.User", null)
+                    b.HasOne("Hotel_management_Api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Hotel_management_Api.Models.User", b =>
+            modelBuilder.Entity("Hotel_management_Api.Models.AppUser", b =>
                 {
                     b.Navigation("Bookings");
                 });

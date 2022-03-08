@@ -36,7 +36,7 @@ namespace Hotel_management_Api.Service.Implementation
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Model not added", Success = false, StatusCode = 403 };
             }
             var roomResponse = _map.Map<Room, RoomResponse>(newRoom);
-            roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
+           // roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
 
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room Successfully added", Success = true, StatusCode = 201 };
 
@@ -51,7 +51,7 @@ namespace Hotel_management_Api.Service.Implementation
 
             }
             var roomResponse = _map.Map<RoomResponse>(room);
-            roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
+            //roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room succesfully fetched", Success = true, StatusCode = 200 };
 
         }
@@ -97,8 +97,8 @@ namespace Hotel_management_Api.Service.Implementation
 
         public  BaseResponse<List<RoomResponse>> GetRooms()
         {
-           var result =_roomRepo.GetRecords().ToList();
-            if (result == null)
+           var result = _roomRepo.GetRecords().ToList();
+            if (result.Count == 0)
             {
                 return new BaseResponse<List<RoomResponse>>() { Data = null, Message = "Rooms does not exist", Success = false, StatusCode = 404 };
             }

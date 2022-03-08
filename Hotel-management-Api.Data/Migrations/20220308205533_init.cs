@@ -36,16 +36,16 @@ namespace Hotel_management_Api.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Room",
+                name: "RoomType",
                 columns: table => new
                 {
-                    RoomId = table.Column<string>(type: "TEXT", nullable: false),
-                    RoomType = table.Column<string>(type: "TEXT", nullable: true),
-                    RoomNumber = table.Column<int>(type: "INTEGER", nullable: false)
+                    RoomTypeId = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    BasePrice = table.Column<decimal>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Room", x => x.RoomId);
+                    table.PrimaryKey("PK_RoomType", x => x.RoomTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,6 +101,26 @@ namespace Hotel_management_Api.Data.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Room",
+                columns: table => new
+                {
+                    RoomId = table.Column<string>(type: "TEXT", nullable: false),
+                    RoomTypeId = table.Column<string>(type: "TEXT", nullable: true),
+                    RoomNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    Available = table.Column<bool>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Room", x => x.RoomId);
+                    table.ForeignKey(
+                        name: "FK_Room_RoomType_RoomTypeId",
+                        column: x => x.RoomTypeId,
+                        principalTable: "RoomType",
+                        principalColumn: "RoomTypeId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -269,6 +289,11 @@ namespace Hotel_management_Api.Data.Migrations
                 name: "IX_Booking_UserId",
                 table: "Booking",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Room_RoomTypeId",
+                table: "Room",
+                column: "RoomTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -302,6 +327,9 @@ namespace Hotel_management_Api.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Address");
+
+            migrationBuilder.DropTable(
+                name: "RoomType");
         }
     }
 }

@@ -10,7 +10,10 @@ namespace Hotel_management_Api.Data.Dto
     public class RoomResponse
     {
         public string RoomId { get; set; }
-        public string RoomType { get; set; }
+        public int RoomTypeId { get; set; }
+        public string Name { get; set; }
+        public decimal BasePrice { get; set; }
         public int RoomNumber { get; set; }
+        public bool Available { get; set; }
     }
 }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Data.Models
 {
-    public enum RoomTypes
+    public class RoomType
     {
-       Regular,
-       Classic,
-       Executive
+        public string RoomTypeId { get; set; } = Guid.NewGuid().ToString();
+        public string Name { get; set; }
+        public decimal BasePrice { get; set; }
+
     }
 }
