@@ -17,15 +17,10 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             _ctx = ctx;
         } 
 
-        public async Task<T> InsertRecord(T model)
+        public async Task<bool> InsertRecord(T model)
         {
            await _ctx.Set<T>().AddAsync(model);
-            var addResponse = await _ctx.SaveChangesAsync();
-            if (addResponse < 1)
-            {
-                return null;
-            }
-            return model;
+            return  await _ctx.SaveChangesAsync() >= 1;
         }
 
         public async Task<T> GetRecord(string id)
@@ -39,6 +34,12 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             _ctx.Set<T>().Remove(getRecord);
             return await _ctx.SaveChangesAsync() >=1;
             
+        }
+
+        public async Task<bool> UpdateRecord(T model)
+        {
+            _ctx.Set<T>().Update(model);
+            return await _ctx.SaveChangesAsync() >= 1;
         }
     }
 }

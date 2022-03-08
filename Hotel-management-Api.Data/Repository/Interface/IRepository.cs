@@ -8,8 +8,9 @@ namespace Hotel_management_Api.Data.Repository.Interface
 {
     public interface IRepository<T>
     {
-        Task<T> InsertRecord(T model);
+        Task<bool> InsertRecord(T model);
         Task<T> GetRecord(string id);
         Task<bool> DeleteRecord(string id);
+        Task<bool> UpdateRecord(T model);
     }
 }

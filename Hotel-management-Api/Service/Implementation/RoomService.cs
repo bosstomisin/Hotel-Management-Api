@@ -29,10 +29,14 @@ namespace Hotel_management_Api.Service.Implementation
             }
 
             var newRoom = _map.Map<Room>(room);
-          
+
             var result = await _roomRepo.InsertRecord(newRoom);
-            var roomResponse = _map.Map<Room, RoomResponse>(result);
-         
+            if (!result)
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Model not added", Success = false, StatusCode = 403 };
+            }
+            var roomResponse = _map.Map<Room, RoomResponse>(newRoom);
+            roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
 
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room Successfully added", Success = true, StatusCode = 201 };
 
@@ -55,7 +59,7 @@ namespace Hotel_management_Api.Service.Implementation
         public async Task<BaseResponse<bool>> DeleteRoom(string id)
         {
             var room = _roomRepo.GetRecord(id).Result;
-            if (room == null) 
+            if (room == null)
             {
                 return new BaseResponse<bool>() { Data = false, Message = "Room does not exist", Success = false, StatusCode = 404 };
             }
@@ -68,5 +72,29 @@ namespace Hotel_management_Api.Service.Implementation
 
         }
 
+        public async Task<BaseResponse<RoomResponse>> UpdateRoom(string id, RoomRequest model)
+        {
+            if (id == null && model == null)
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Id and model cannot be empty", Success = false, StatusCode = 204 };
+            }
+            var getRoom = _roomRepo.GetRecord(id).Result;
+            if (getRoom == null)
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Room does not exist", Success = false, StatusCode = 404 };
+            }
+            getRoom = _map.Map(model, getRoom);
+            //getRoom.RoomId = id;
+
+            var updateResult = await _roomRepo.UpdateRecord(getRoom);
+            if (!updateResult)
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Room not updated", Success = false, StatusCode = 404 };
+            }
+            var roomResponse = _map.Map<RoomResponse>(getRoom);
+            //roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), model.RoomType);
+            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room does not exist", Success = false, StatusCode = 404 };
+
+        }
     }
 }

@@ -42,5 +42,11 @@ namespace Hotel_management_Api.Controllers
         {
             return await _roomService.DeleteRoom(id);
         }
+
+        [HttpPut("update-room/{id}")]
+        public async Task<BaseResponse<RoomResponse>> UpdateRoom(string id, RoomRequest room)
+        {
+            return await _roomService.UpdateRoom(id, room);
+        }
     }
 }
