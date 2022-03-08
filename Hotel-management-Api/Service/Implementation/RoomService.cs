@@ -84,7 +84,6 @@ namespace Hotel_management_Api.Service.Implementation
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Room does not exist", Success = false, StatusCode = 404 };
             }
             getRoom = _map.Map(model, getRoom);
-            //getRoom.RoomId = id;
 
             var updateResult = await _roomRepo.UpdateRecord(getRoom);
             if (!updateResult)
@@ -92,8 +91,7 @@ namespace Hotel_management_Api.Service.Implementation
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Room not updated", Success = false, StatusCode = 404 };
             }
             var roomResponse = _map.Map<RoomResponse>(getRoom);
-            //roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), model.RoomType);
-            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room does not exist", Success = false, StatusCode = 404 };
+            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room properties updated", Success = false, StatusCode = 404 };
 
         }
     }

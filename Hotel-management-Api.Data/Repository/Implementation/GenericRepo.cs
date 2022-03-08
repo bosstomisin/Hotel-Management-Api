@@ -1,6 +1,7 @@
 ﻿using Hotel_management_Api.Data.Dto;
 using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Hotel_management_Api.Data.Repository.Implementation
 
         public async Task<T> GetRecord(string id)
         {
-            return await _ctx.Set<T>().FindAsync(id);
+            return await _ctx.Set<T>().FirstOrDefaultAsync();// FindAsync(id);
         }
 
         public async Task<bool> DeleteRecord(string id)
@@ -40,6 +41,11 @@ namespace Hotel_management_Api.Data.Repository.Implementation
         {
             _ctx.Set<T>().Update(model);
             return await _ctx.SaveChangesAsync() >= 1;
+        }
+
+        public IQueryable<T> GetRecords()
+        {
+            return _ctx.Set<T>();
         }
     }
 }
