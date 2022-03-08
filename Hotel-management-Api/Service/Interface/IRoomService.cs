@@ -14,5 +14,6 @@ namespace Hotel_management_Api.Service.Interface
         Task<BaseResponse<RoomResponse>> GetRoom(string id);
         Task<BaseResponse<bool>> DeleteRoom(string id);
         Task<BaseResponse<RoomResponse>> UpdateRoom(string id, RoomRequest model);
+        BaseResponse<List<RoomResponse>> GetRooms();
     }
 }

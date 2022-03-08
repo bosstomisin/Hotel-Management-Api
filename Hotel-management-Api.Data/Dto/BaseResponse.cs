@@ -10,8 +10,9 @@ namespace Hotel_management_Api.Data.Dto
     {
         public int StatusCode { get; set; }
         public bool Success { get; set; } = false;
-        public T Data { get; set; }
         public string Message { get; set; }
+
+        public T Data { get; set; }
 
     }
 }

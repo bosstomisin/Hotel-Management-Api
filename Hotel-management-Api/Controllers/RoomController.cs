@@ -48,5 +48,11 @@ namespace Hotel_management_Api.Controllers
         {
             return await _roomService.UpdateRoom(id, room);
         }
+
+        [HttpGet("get-rooms")]
+        public  BaseResponse<List<RoomResponse>> GetRooms()
+        {
+            return _roomService.GetRooms();
+        }
     }
 }

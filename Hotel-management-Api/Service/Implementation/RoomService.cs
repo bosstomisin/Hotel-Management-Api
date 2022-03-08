@@ -94,5 +94,17 @@ namespace Hotel_management_Api.Service.Implementation
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room properties updated", Success = false, StatusCode = 404 };
 
         }
+
+        public  BaseResponse<List<RoomResponse>> GetRooms()
+        {
+           var result =_roomRepo.GetRecords().ToList();
+            if (result == null)
+            {
+                return new BaseResponse<List<RoomResponse>>() { Data = null, Message = "Rooms does not exist", Success = false, StatusCode = 404 };
+            }
+            var roomResponse = _map.Map<List<RoomResponse>>(result);
+            return new BaseResponse<List<RoomResponse>>() { Data = roomResponse, Message = "Success", Success = true, StatusCode = 200 };
+
+        }
     }
 }
