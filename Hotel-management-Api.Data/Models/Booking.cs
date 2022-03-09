@@ -22,7 +22,9 @@ namespace Hotel_management_Api.Data.Models
        // public bool Completed { get; set; }
         //public Guid UserId { get; set; }
         public  AppUser User { get; set; }
-       
-    
-}
+        public string CreatedDate { get; set; } = DateTime.Now.ToString();
+        public string UpdatedDate { get; set; } = DateTime.Now.ToString();
+
+
+    }
 }

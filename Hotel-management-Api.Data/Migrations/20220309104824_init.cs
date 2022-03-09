@@ -56,6 +56,8 @@ namespace Hotel_management_Api.Data.Migrations
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
                     AddressId = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedDate = table.Column<string>(type: "TEXT", nullable: true),
+                    UpdatedDate = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -110,7 +112,9 @@ namespace Hotel_management_Api.Data.Migrations
                     RoomId = table.Column<string>(type: "TEXT", nullable: false),
                     RoomTypeId = table.Column<string>(type: "TEXT", nullable: true),
                     RoomNumber = table.Column<int>(type: "INTEGER", nullable: false),
-                    Available = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Available = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedDate = table.Column<string>(type: "TEXT", nullable: true),
+                    UpdatedDate = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -219,7 +223,9 @@ namespace Hotel_management_Api.Data.Migrations
                     CheckOut = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Guests = table.Column<int>(type: "INTEGER", nullable: false),
                     TotalFee = table.Column<decimal>(type: "TEXT", nullable: false),
-                    UserId = table.Column<string>(type: "TEXT", nullable: true)
+                    UserId = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedDate = table.Column<string>(type: "TEXT", nullable: true),
+                    UpdatedDate = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

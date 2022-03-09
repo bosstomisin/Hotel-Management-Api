@@ -51,20 +51,20 @@ namespace Hotel_management_Api.Service.Implementation
             var roomResponse = _map.Map<RoomResponse>(room);
 
 
-            if ( roomResponse.BasePrice == 0 && roomResponse.Name == null )
-            {
-                var roomType = new RoomType() { 
-                    Name = getByName.RoomType.Name, 
-                    BasePrice = getByName.RoomType.BasePrice,  
-                };
-                roomResponse.BasePrice = roomType.BasePrice;
-                roomResponse.Name = roomType.Name;
-            }
-            else
-            {
+            //if ( roomResponse.BasePrice == 0 && roomResponse.Name == null )
+            //{
+                //var roomType = new RoomType() { 
+                //    Name = getByName.RoomType.Name, 
+                //    BasePrice = getByName.RoomType.BasePrice,  
+                //};
                 roomResponse.BasePrice = room.RoomType.BasePrice;
-                roomResponse.Name = room.RoomType.Name;           
-            }
+                roomResponse.Name = room.RoomType.Name;
+            //}
+            //else
+            //{
+                //roomResponse.BasePrice = room.RoomType.BasePrice;
+                //roomResponse.Name = room.RoomType.Name;           
+            //}
 
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room Successfully added", Success = true, StatusCode = 201 };
 

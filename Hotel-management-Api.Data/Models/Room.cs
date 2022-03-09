@@ -15,7 +15,8 @@ namespace Hotel_management_Api.Models
         public RoomType RoomType { get; set; }
         public int RoomNumber { get; set; }
         public bool Available { get; set; } = true;
-
+        public string CreatedDate { get; set; } = DateTime.Now.ToString();
+        public string UpdatedDate { get; set; } = DateTime.Now.ToString();
 
 
     }

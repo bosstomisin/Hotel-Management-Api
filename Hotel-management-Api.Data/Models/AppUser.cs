@@ -13,5 +13,7 @@ namespace Hotel_management_Api.Models
         public string LastName { get; set; }
         public Address Address { get; set; }
         public List<Booking> Bookings { get; set; } = new List<Booking>();
+        public string CreatedDate { get; set; } = DateTime.Now.ToString();
+        public string UpdatedDate { get; set; } = DateTime.Now.ToString();
     }
 }

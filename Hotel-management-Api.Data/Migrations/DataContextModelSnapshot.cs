@@ -46,6 +46,9 @@ namespace Hotel_management_Api.Data.Migrations
                     b.Property<DateTime>("CheckOut")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
@@ -56,6 +59,9 @@ namespace Hotel_management_Api.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("TotalFee")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")
@@ -101,6 +107,9 @@ namespace Hotel_management_Api.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -143,6 +152,9 @@ namespace Hotel_management_Api.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("UpdatedDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -169,10 +181,16 @@ namespace Hotel_management_Api.Data.Migrations
                     b.Property<bool>("Available")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("RoomTypeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("RoomId");
