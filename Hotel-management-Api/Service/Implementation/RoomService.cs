@@ -21,22 +21,50 @@ namespace Hotel_management_Api.Service.Implementation
             _roomRepo = roomRepo;
             _map = map;
         }
-        public async Task<BaseResponse<RoomResponse>> AddRoom(RoomRequest room)
+        public async Task<BaseResponse<RoomResponse>> AddRoom(RoomRequest model)
         {
-            if (room == null)
+            if (model == null)
             {
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Model cannot be empty", Success = false, StatusCode = 204 };
             }
+            model.Name = model.Name.ToLower();
+            var getByName = await _roomRepo.GetByName(model.Name);
+            Room room;
+            if (getByName != null)
+            {
+                room = new Room() { RoomNumber = model.RoomNumber };
+                var roomType = new RoomType() { RoomTypeId = getByName.RoomTypeId };
+                room.RoomTypeId = roomType.RoomTypeId;
+            }
+            else
+            {
+                room = _map.Map<Room>(model);
+                var roomType = new RoomType() { Name = model.Name, BasePrice = model.BasePrice };
+                room.RoomType = roomType;
+            }
 
-            var newRoom = _map.Map<Room>(room);
-
-            var result = await _roomRepo.InsertRecord(newRoom);
+            var result = await _roomRepo.InsertRecord(room);
             if (!result)
             {
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Model not added", Success = false, StatusCode = 403 };
             }
-            var roomResponse = _map.Map<Room, RoomResponse>(newRoom);
-           // roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
+            var roomResponse = _map.Map<RoomResponse>(room);
+
+
+            if ( roomResponse.BasePrice == 0 && roomResponse.Name == null )
+            {
+                var roomType = new RoomType() { 
+                    Name = getByName.RoomType.Name, 
+                    BasePrice = getByName.RoomType.BasePrice,  
+                };
+                roomResponse.BasePrice = roomType.BasePrice;
+                roomResponse.Name = roomType.Name;
+            }
+            else
+            {
+                roomResponse.BasePrice = room.RoomType.BasePrice;
+                roomResponse.Name = room.RoomType.Name;           
+            }
 
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room Successfully added", Success = true, StatusCode = 201 };
 
@@ -51,6 +79,8 @@ namespace Hotel_management_Api.Service.Implementation
 
             }
             var roomResponse = _map.Map<RoomResponse>(room);
+            roomResponse.Name = room.RoomType.Name;
+            roomResponse.BasePrice = room.RoomType.BasePrice;
             //roomResponse.RoomType = Enum.GetName(typeof(RoomTypes), room.RoomType);
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room succesfully fetched", Success = true, StatusCode = 200 };
 

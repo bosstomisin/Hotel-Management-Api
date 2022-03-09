@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hotel_management_Api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220308205533_init")]
+    [Migration("20220309093434_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

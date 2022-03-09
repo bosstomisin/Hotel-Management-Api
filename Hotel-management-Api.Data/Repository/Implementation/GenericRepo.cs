@@ -12,7 +12,7 @@ namespace Hotel_management_Api.Data.Repository.Implementation
 {
     public class GenericRepo<T> : IRepository<T>where T : class
     {
-        private readonly DataContext _ctx;
+        protected readonly DataContext _ctx;
         public GenericRepo(DataContext ctx)
         {
             _ctx = ctx;
@@ -26,7 +26,7 @@ namespace Hotel_management_Api.Data.Repository.Implementation
 
         public async Task<T> GetRecord(string id)
         {
-            return await _ctx.Set<T>().FirstOrDefaultAsync();
+            return await _ctx.Set<T>().FindAsync(id);
         }
 
         public async Task<bool> DeleteRecord(string id)
