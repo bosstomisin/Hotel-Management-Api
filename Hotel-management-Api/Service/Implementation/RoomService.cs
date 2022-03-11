@@ -62,7 +62,7 @@ namespace Hotel_management_Api.Service.Implementation
             {
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Room not found", Success = false, StatusCode = 404 };
             }
-            var room = await  _roomRepo.GetRoomById(id);
+            var room = await _roomRepo.GetRoomById(id);
             if (room == null)
             {
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Room not found", Success = false, StatusCode = 404 };
@@ -72,25 +72,32 @@ namespace Hotel_management_Api.Service.Implementation
 
         }
 
-        //public async Task<BaseResponse<bool>> DeleteRoom(string id)
-        //{
-        //    var room = _roomRepo.GetRecord(id).Result;
-        //    if (room == null)
-        //    {
-        //        return new BaseResponse<bool>() { Data = false, Message = "Room does not exist", Success = false, StatusCode = 404 };
-        //    }
-        //    var delete = await _roomRepo.DeleteRecord(id);
-        //    if (!delete)
-        //    {
-        //        return new BaseResponse<bool>() { Data = false, Message = "Room could not be deleted", Success = false, StatusCode = 404 };
-        //    }
-        //    return new BaseResponse<bool>() { Data = true, Message = "Room deleted successfully", Success = true, StatusCode = 200 };
+        public async Task<BaseResponse<RoomResponse>> DeleteRoom(string id)
+        {
+            
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Invalid Id", Success = false, StatusCode = 404 };
 
-        //}
+            }
+            var room = _roomRepo.GetRoomById(id).Result;
+            if (room == null)
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Room does not exist", Success = false, StatusCode = 404 };
+            }
+            var delete = await _roomRepo.DeleteRecord(id);
+            if (!delete)
+            {
+                return new BaseResponse<RoomResponse>() { Data = null, Message = "Room could not be deleted", Success = false, StatusCode = 404 };
+            }
+            var roomResponse = _map.Map<RoomResponse>(room);
+            return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room deleted successfully", Success = true, StatusCode = 200 };
+
+        }
 
         public async Task<BaseResponse<UpdateRoomResponse>> UpdateRoom(string id, UpdateRoomRequest model)
         {
-            if (id == null && model == null)
+            if (string.IsNullOrWhiteSpace(id) || model == null)
             {
                 return new BaseResponse<UpdateRoomResponse>() { Data = null, Message = "Id and model cannot be empty", Success = false, StatusCode = 204 };
             }

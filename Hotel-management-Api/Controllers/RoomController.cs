@@ -37,11 +37,11 @@ namespace Hotel_management_Api.Controllers
             return await  _roomService.GetRoom(id);
         }
 
-        //[HttpDelete("delete-room/{id}")]
-        //public async Task<BaseResponse<bool>> DeleteRoom(string id)
-        //{
-        //    return await _roomService.DeleteRoom(id);
-        //}
+        [HttpDelete("delete-room/{id}")]
+        public async Task<BaseResponse<RoomResponse>> DeleteRoom(string id)
+        {
+            return await _roomService.DeleteRoom(id);
+        }
 
         [HttpPut("update-room/{id}")]
         public async Task<BaseResponse<UpdateRoomResponse>> UpdateRoom(string id, UpdateRoomRequest room)

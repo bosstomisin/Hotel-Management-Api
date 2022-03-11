@@ -12,6 +12,7 @@ namespace Hotel_management_Api.Data.Repository.Interface
         Task<Room> GetByName(string name);
         IQueryable<Room> GetAllRooms();
         Task<Room> GetRoomById(string id);
+        Task<bool> DeleteRecord(string id);
 
     }
 }
