@@ -15,26 +15,28 @@ namespace Hotel_management_Api.Data.Repository.Implementation
     public class GenericRepo<T> : IRepository<T>where T : class
     {
         protected readonly DataContext _ctx;
+        private readonly DbSet<T> _dbSet;
+
         public GenericRepo(DataContext ctx)
         {
             _ctx = ctx;
-        } 
+            _dbSet = _ctx.Set<T>();
+
+        }
 
         public async Task<bool> InsertRecord(T model)
         {
            await _ctx.Set<T>().AddAsync(model);
             return  await _ctx.SaveChangesAsync() >= 1;
         }
-        //params Expression<Func<TEntity, object>>[] includes
 
-
-        public async Task<bool> DeleteRecord(string id)
-        {
-            var getRecord = GetRecord(id).Result;
-            _ctx.Set<T>().Remove(getRecord);
-            return await _ctx.SaveChangesAsync() >=1;
+        //public async Task<bool> DeleteRecord(string id)
+        //{
+        //    var getRecord = GetRecord(id).Result;
+        //    _ctx.Set<T>().Remove(getRecord);
+        //    return await _ctx.SaveChangesAsync() >=1;
             
-        }
+        //}
 
         public async Task<bool> UpdateRecord(T model)
         {
@@ -44,20 +46,26 @@ namespace Hotel_management_Api.Data.Repository.Implementation
 
         public IQueryable<T> GetRecords(params Expression<Func<T, object>>[] includes)
         {
-
-
             IQueryable<T> query = _ctx.Set<T>();
             if (includes != null)
                 foreach (Expression<Func<T, object>> include in includes)
                     query = query.Include(include);
 
             return ((DbSet<T>)query);
-            //return _ctx.Set<T>();
         }
 
-        public Task<T> GetRecord(string id)
-        {
-            throw new NotImplementedException();
-        }
+        //public  IQueryable<T> GetRecord(object id, params Expression<Func<T, object>>[] includes)
+        //{
+        //    //IQueryable<T> query = _ctx.Set<T>();
+        //    //if (includes != null)
+        //    //    foreach (Expression<Func<T, object>> include in includes)
+        //    //        query = query.Include(include);
+
+        //    //return (IQueryable<T>)((DbSet<T>)query).FirstOrDefaultAsync(x => x.Id = id);
+        //    IQueryable<T> query = _ctx.Set<T>();
+        //    query = query.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        //    //return _dbSet.Find(id);
+        //    //throw new NotImplementedException();
+        //}
     }
 }

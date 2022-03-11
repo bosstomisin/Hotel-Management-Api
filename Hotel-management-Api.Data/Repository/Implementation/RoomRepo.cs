@@ -26,5 +26,10 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             return _repo.GetRecords().Include(x => x.RoomType);
         }
 
+        public async Task<Room> GetRoomById(string id)
+        {
+            return  await _ctx.Room.Include(x => x.RoomType).FirstOrDefaultAsync(x => x.RoomId == id);
+        }
+
     }
 }
