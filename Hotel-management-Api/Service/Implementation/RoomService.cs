@@ -120,11 +120,6 @@ namespace Hotel_management_Api.Service.Implementation
             }
             var result = rooms.Select(room => _map.Map<RoomResponse> (room)
             ).ToList();
-           // var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
-
-           
-            //var roomResponse = _map.Map<List<RoomResponse>>(result);
-         
             return new BaseResponse<List<RoomResponse>>() { Data = result, Message = "Success", Success = true, StatusCode = 200 };
 
         }
