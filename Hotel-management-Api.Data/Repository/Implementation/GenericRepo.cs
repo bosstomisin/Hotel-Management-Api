@@ -54,18 +54,6 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             return ((DbSet<T>)query);
         }
 
-        //public  IQueryable<T> GetRecord(object id, params Expression<Func<T, object>>[] includes)
-        //{
-        //    //IQueryable<T> query = _ctx.Set<T>();
-        //    //if (includes != null)
-        //    //    foreach (Expression<Func<T, object>> include in includes)
-        //    //        query = query.Include(include);
-
-        //    //return (IQueryable<T>)((DbSet<T>)query).FirstOrDefaultAsync(x => x.Id = id);
-        //    IQueryable<T> query = _ctx.Set<T>();
-        //    query = query.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
-        //    //return _dbSet.Find(id);
-        //    //throw new NotImplementedException();
-        //}
+     
     }
 }

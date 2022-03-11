@@ -17,6 +17,10 @@ namespace Hotel_management_Api.MapperProfile
             CreateMap<Room, RoomResponse>().ForMember(dest => dest.BasePrice, opt => opt.MapFrom(src => src.RoomType.BasePrice))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.RoomType.Name));
             CreateMap<RoomRequest, Room>().ReverseMap();
+            CreateMap<UpdateRoomRequest, Room>().ReverseMap();
+            CreateMap<Room, UpdateRoomResponse>().ReverseMap();
+
+
         }
     }
 }
