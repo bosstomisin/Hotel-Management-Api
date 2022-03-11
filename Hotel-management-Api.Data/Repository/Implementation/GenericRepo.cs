@@ -2,9 +2,11 @@
 using Hotel_management_Api.Data.Repository.Interface;
 using Hotel_management_Api.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,11 +25,8 @@ namespace Hotel_management_Api.Data.Repository.Implementation
            await _ctx.Set<T>().AddAsync(model);
             return  await _ctx.SaveChangesAsync() >= 1;
         }
+        //params Expression<Func<TEntity, object>>[] includes
 
-        public async Task<T> GetRecord(string id)
-        {
-            return await _ctx.Set<T>().FindAsync(id);
-        }
 
         public async Task<bool> DeleteRecord(string id)
         {
@@ -43,9 +42,22 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             return await _ctx.SaveChangesAsync() >= 1;
         }
 
-        public IQueryable<T> GetRecords()
+        public IQueryable<T> GetRecords(params Expression<Func<T, object>>[] includes)
         {
-            return _ctx.Set<T>();
+
+
+            IQueryable<T> query = _ctx.Set<T>();
+            if (includes != null)
+                foreach (Expression<Func<T, object>> include in includes)
+                    query = query.Include(include);
+
+            return ((DbSet<T>)query);
+            //return _ctx.Set<T>();
+        }
+
+        public Task<T> GetRecord(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -49,22 +49,8 @@ namespace Hotel_management_Api.Service.Implementation
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Model not added", Success = false, StatusCode = 403 };
             }
             var roomResponse = _map.Map<RoomResponse>(room);
-
-
-            //if ( roomResponse.BasePrice == 0 && roomResponse.Name == null )
-            //{
-                //var roomType = new RoomType() { 
-                //    Name = getByName.RoomType.Name, 
-                //    BasePrice = getByName.RoomType.BasePrice,  
-                //};
-                roomResponse.BasePrice = room.RoomType.BasePrice;
-                roomResponse.Name = room.RoomType.Name;
-            //}
-            //else
-            //{
-                //roomResponse.BasePrice = room.RoomType.BasePrice;
-                //roomResponse.Name = room.RoomType.Name;           
-            //}
+            roomResponse.BasePrice = room.RoomType.BasePrice;
+            roomResponse.Name = room.RoomType.Name;
 
             return new BaseResponse<RoomResponse>() { Data = roomResponse, Message = "Room Successfully added", Success = true, StatusCode = 201 };
 
@@ -127,13 +113,19 @@ namespace Hotel_management_Api.Service.Implementation
 
         public  BaseResponse<List<RoomResponse>> GetRooms()
         {
-           var result = _roomRepo.GetRecords().ToList();
-            if (result.Count == 0)
+            var rooms = _roomRepo.GetAllRooms().ToList();
+            if (rooms.Count == 0)
             {
                 return new BaseResponse<List<RoomResponse>>() { Data = null, Message = "Rooms does not exist", Success = false, StatusCode = 404 };
             }
-            var roomResponse = _map.Map<List<RoomResponse>>(result);
-            return new BaseResponse<List<RoomResponse>>() { Data = roomResponse, Message = "Success", Success = true, StatusCode = 200 };
+            var result = rooms.Select(room => _map.Map<RoomResponse> (room)
+            ).ToList();
+           // var bookDto = books.Select(book => _mapper.Map<GetBookDto>(book));
+
+           
+            //var roomResponse = _map.Map<List<RoomResponse>>(result);
+         
+            return new BaseResponse<List<RoomResponse>>() { Data = result, Message = "Success", Success = true, StatusCode = 200 };
 
         }
     }

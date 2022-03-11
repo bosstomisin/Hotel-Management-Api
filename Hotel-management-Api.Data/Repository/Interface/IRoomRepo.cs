@@ -10,5 +10,6 @@ namespace Hotel_management_Api.Data.Repository.Interface
     public interface IRoomRepo : IRepository<Room>
     {
         Task<Room> GetByName(string name);
+        IQueryable<Room> GetAllRooms();
     }
 }

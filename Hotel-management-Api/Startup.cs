@@ -68,10 +68,10 @@ namespace Hotel_management_Api
                     });
             });
             services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("Default")));
-            services.AddScoped<IRepository<Room>, RoomRepo>();
+            //services.AddScoped<IRepository<Room>, RoomRepo>();
             services.AddScoped<IRoomRepo, RoomRepo>();
             services.AddScoped<IRoomService, RoomService>();
-
+            services.AddScoped<IRepository<Room>, GenericRepo<Room>>();
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(MappingProfile));
             services.Configure<JWTConfig>(Configuration.GetSection(JWTConfig.Data));
