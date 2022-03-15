@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Data.Dto
 {
-    public class UpdateRoomResponse
+    public class BookingResponse
     {
-        public string RoomId { get; set; }
-        public string RoomTypeId { get; set; }
+        public string BookingId { get; set; }
         public string RoomTypeName { get; set; }
         public decimal BasePrice { get; set; }
         public int RoomNumber { get; set; }
-        public bool Available { get; set; }
-        public string UpdatedDate { get; set; }
-
+        public int Guests { get; set; }
+        public decimal TotalFee { get; set; }
+        public string CheckIn { get; set; } = DateTime.Now.ToString();
+        public string ExpectedCheckOutDate { get; set; }
     }
 }

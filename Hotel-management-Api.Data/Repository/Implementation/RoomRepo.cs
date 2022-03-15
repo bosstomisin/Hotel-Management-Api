@@ -18,7 +18,7 @@ namespace Hotel_management_Api.Data.Repository.Implementation
         }
         public async Task<Room> GetByName(string name)
         {
-            return await _ctx.Room.Include(s => s.RoomType).FirstOrDefaultAsync(x => x.RoomType.Name == name);
+            return await _ctx.Room.Include(s => s.RoomType).FirstOrDefaultAsync(x => x.RoomType.RoomTypeName == name);
         }
 
         public IQueryable<Room> GetAllRooms()

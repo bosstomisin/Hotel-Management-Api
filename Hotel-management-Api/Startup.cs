@@ -72,6 +72,9 @@ namespace Hotel_management_Api
             services.AddScoped<IRoomRepo, RoomRepo>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IRepository<Room>, GenericRepo<Room>>();
+            services.AddScoped<IRepository<Booking>, GenericRepo<Booking>>();
+            services.AddScoped<IBookingRepo, BookingRepo>();
+            services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(MappingProfile));
             services.Configure<JWTConfig>(Configuration.GetSection(JWTConfig.Data));

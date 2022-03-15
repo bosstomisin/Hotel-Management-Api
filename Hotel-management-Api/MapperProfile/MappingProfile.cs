@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hotel_management_Api.Data.Dto;
+using Hotel_management_Api.Data.Models;
 using Hotel_management_Api.Models;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,12 @@ namespace Hotel_management_Api.MapperProfile
             CreateMap<AppUser, UserResponse>().ReverseMap();
             CreateMap<UserRequest, AppUser>().ReverseMap();
             CreateMap<Room, RoomResponse>().ForMember(dest => dest.BasePrice, opt => opt.MapFrom(src => src.RoomType.BasePrice))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.RoomType.Name));
+                .ForMember(dest => dest.RoomTypeName, opt => opt.MapFrom(src => src.RoomType.RoomTypeName));
             CreateMap<RoomRequest, Room>().ReverseMap();
             CreateMap<UpdateRoomRequest, Room>().ReverseMap();
             CreateMap<Room, UpdateRoomResponse>().ReverseMap();
-
+            CreateMap<BookingRequest, Booking>();
+            CreateMap<BookingRequest, BookingResponse>();
 
         }
     }

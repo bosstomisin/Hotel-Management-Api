@@ -27,8 +27,8 @@ namespace Hotel_management_Api.Service.Implementation
             {
                 return new BaseResponse<RoomResponse>() { Data = null, Message = "Model cannot be empty", Success = false, StatusCode = 204 };
             }
-            model.Name = model.Name.ToLower();
-            var getByName = await _roomRepo.GetByName(model.Name);
+            model.RoomTypeName = model.RoomTypeName.ToLower();
+            var getByName = await _roomRepo.GetByName(model.RoomTypeName);
             Room room;
             if (getByName != null)
             {
@@ -39,7 +39,7 @@ namespace Hotel_management_Api.Service.Implementation
             else
             {
                 room = _map.Map<Room>(model);
-                var roomType = new RoomType() { Name = model.Name, BasePrice = model.BasePrice };
+                var roomType = new RoomType() { RoomTypeName = model.RoomTypeName, BasePrice = model.BasePrice };
                 room.RoomType = roomType;
             }
 
@@ -101,8 +101,8 @@ namespace Hotel_management_Api.Service.Implementation
             {
                 return new BaseResponse<UpdateRoomResponse>() { Data = null, Message = "Id and model cannot be empty", Success = false, StatusCode = 204 };
             }
-            model.Name = model.Name.ToLower();
-            var getRoomType = _roomRepo.GetByName(model.Name).Result;
+            model.RoomTypeName = model.RoomTypeName.ToLower();
+            var getRoomType = _roomRepo.GetByName(model.RoomTypeName).Result;
             if (getRoomType == null)
             {
                 return new BaseResponse<UpdateRoomResponse>() { Data = null, Message = "Room type does not exist", Success = false, StatusCode = 404 };
@@ -115,6 +115,7 @@ namespace Hotel_management_Api.Service.Implementation
             }
             getRoom = _map.Map(model, getRoom);
             getRoom.RoomTypeId = getRoomType.RoomType.RoomTypeId;
+            getRoom.UpdatedDate = DateTime.Now.ToString();
             var updateResult = await _roomRepo.UpdateRecord(getRoom);
             if (!updateResult)
             {
@@ -122,7 +123,7 @@ namespace Hotel_management_Api.Service.Implementation
             }
             var roomResponse = _map.Map<UpdateRoomResponse>(getRoom);
             roomResponse.BasePrice = getRoom.RoomType.BasePrice;
-            roomResponse.Name = getRoom.RoomType.Name;
+            roomResponse.RoomTypeName = getRoom.RoomType.RoomTypeName;
             return new BaseResponse<UpdateRoomResponse>() { Data = roomResponse, Message = "Room properties updated", Success = true, StatusCode = 200 };
 
         }

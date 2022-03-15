@@ -11,18 +11,14 @@ namespace Hotel_management_Api.Data.Models
     public class Booking
     {
         [DisplayName("Id")]
-        public string BookingId { get; set; }
+        public string BookingId { get; set; } = Guid.NewGuid().ToString();
         public Room Room { get; set; }
-        public DateTime DateCreated { get; set; } = DateTime.Now;
-        public DateTime CheckIn { get; set; } = DateTime.Now;
-        public DateTime CheckOut { get; set; } = DateTime.Now;
         public int Guests { get; set; }
         public decimal TotalFee { get; set; }
-        //public bool Paid { get; set; }
-       // public bool Completed { get; set; }
-        //public Guid UserId { get; set; }
-        public  AppUser User { get; set; }
-        public string CreatedDate { get; set; } = DateTime.Now.ToString();
+        public AppUser User { get; set; }
+        public string CheckIn { get; set; } = DateTime.Now.ToString();
+        public string ExpectedCheckOutDate { get; set; }
+        public string CheckOut { get; set; } = DateTime.Now.ToString();
         public string UpdatedDate { get; set; } = DateTime.Now.ToString();
 
 
