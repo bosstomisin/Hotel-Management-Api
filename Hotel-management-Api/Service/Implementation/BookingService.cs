@@ -30,12 +30,25 @@ namespace Hotel_management_Api.Service.Implementation
             var booking =_map.Map<Booking>(model);
 
             var addResponse = await _repo.InsertRecord(booking);
+            
             if (!addResponse)
             {
                 return new BaseResponse<BookingResponse>() { Data = null, Message = "Booking not created", StatusCode = 400, Success = false };
             }
-            var bookingResponse = _map.Map<BookingResponse>(model);
+            var bookingResponse = _map.Map<BookingResponse>(booking);
             return new BaseResponse<BookingResponse>() { Data = bookingResponse, Message = "Booking Created", StatusCode = 201, Success = true };
+            
+        }
+        
+        public  BaseResponse<IEnumerable<BookingResponse>> GetAllBookings()
+        {
+            var records =_repo.GetRecords();
+            if (records == null)
+            {
+                return new BaseResponse<IEnumerable<BookingResponse>>() { Data = null, Message = "No record", StatusCode = 404, Success = false };
+            }
+            var bookingRespose = _map.Map<IEnumerable<BookingResponse>>(records);
+            return new BaseResponse<IEnumerable<BookingResponse>>() { Data = bookingRespose, Message = "Successful", StatusCode = 200, Success = true };
 
         }
     }

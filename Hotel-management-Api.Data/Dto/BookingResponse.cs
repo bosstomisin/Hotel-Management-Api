@@ -9,9 +9,8 @@ namespace Hotel_management_Api.Data.Dto
     public class BookingResponse
     {
         public string BookingId { get; set; }
-        public string RoomTypeName { get; set; }
-        public decimal BasePrice { get; set; }
-        public int RoomNumber { get; set; }
+        public string UserId { get; set; }
+        public string RoomId { get; set; }
         public int Guests { get; set; }
         public decimal TotalFee { get; set; }
         public string CheckIn { get; set; } = DateTime.Now.ToString();

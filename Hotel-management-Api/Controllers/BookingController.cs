@@ -30,5 +30,11 @@ namespace Hotel_management_Api.Controllers
         {
             return await _booking.AddBooking(model);
         }
+
+        [HttpGet("get-bookings")]
+        public BaseResponse<IEnumerable<BookingResponse>> GetBookings()
+        {
+           return _booking.GetAllBookings();
+        }
     }
 }

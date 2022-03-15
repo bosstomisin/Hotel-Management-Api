@@ -9,5 +9,7 @@ namespace Hotel_management_Api.Service.Interface
     public interface IBookingService
     {
         Task<BaseResponse<BookingResponse>> AddBooking(BookingRequest model);
+        BaseResponse<IEnumerable<BookingResponse>> GetAllBookings();
+        Task<BaseResponse<BookingResponse>> GetBooking(string id);
     }
 }
