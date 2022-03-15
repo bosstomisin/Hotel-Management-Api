@@ -36,5 +36,11 @@ namespace Hotel_management_Api.Controllers
         {
            return _booking.GetAllBookings();
         }
+
+        [HttpGet("get-booking/{id}")]
+        public async Task<BaseResponse<BookingResponse>> GetBooking(string id)
+        {
+            return await  _booking.GetBooking(id);
+        }
     }
 }
