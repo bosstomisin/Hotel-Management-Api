@@ -57,14 +57,34 @@ namespace Hotel_management_Api.Service.Implementation
             if (string.IsNullOrWhiteSpace(id))
             {
                 return new BaseResponse<BookingResponse>() { Data = null, Message = "Incorrect id", StatusCode = 404, Success = false };
+            }
+            var booking = await _repo.GetRecord(id);
+            if (booking == null)
+            {
+                return new BaseResponse<BookingResponse>() { Data = null, Message = "Record not found", StatusCode = 404, Success = false };
+            }
+            var bookingResponse = _map.Map<BookingResponse>(booking);
+            return new BaseResponse<BookingResponse>() { Data = bookingResponse, Message = "Successful", StatusCode = 200, Success = true };
 
+        }
+
+        public async Task<BaseResponse<BookingResponse>> DeleteBooking(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return new BaseResponse<BookingResponse>() { Data = null, Message = "Incorrect id", StatusCode = 404, Success = false };
             }
             var booking = await _repo.GetRecord(id);
             if (booking == null)
             {
                 return new BaseResponse<BookingResponse>() { Data = null, Message = "Incorrect id", StatusCode = 404, Success = false };
             }
-            var bookingResponse = _map.Map<BookingResponse>(booking);
+            var deleteResponse = await _repo.DeleteRecord(id);
+            if (!deleteResponse)
+            {
+                return new BaseResponse<BookingResponse>() { Data = null, Message = "Operation not Successful", StatusCode = 400, Success = false };
+            }
+            var bookingResponse = _map.Map<BookingResponse>(deleteResponse);
             return new BaseResponse<BookingResponse>() { Data = bookingResponse, Message = "Successful", StatusCode = 200, Success = true };
 
         }

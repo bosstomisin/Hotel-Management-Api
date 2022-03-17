@@ -31,13 +31,7 @@ namespace Hotel_management_Api.Data.Repository.Implementation
             return  await _ctx.Room.Include(x => x.RoomType).FirstOrDefaultAsync(x => x.RoomId == id);
         }
 
-        public async Task<bool> DeleteRecord(string id)
-        {
-            var getRecord = await GetRoomById(id);
-            _ctx.Room.Remove(getRecord);
-            return await _ctx.SaveChangesAsync() >= 1;
 
-        }
 
 
 

@@ -42,5 +42,11 @@ namespace Hotel_management_Api.Controllers
         {
             return await  _booking.GetBooking(id);
         }
+
+        [HttpDelete("delete-booking/{id}")]
+        public async Task<BaseResponse<BookingResponse>> DeleteBooking(string id)
+        {
+            return await _booking.DeleteBooking(id);
+        }
     }
 }
