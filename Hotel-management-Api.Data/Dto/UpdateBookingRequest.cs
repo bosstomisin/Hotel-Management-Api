@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Data.Dto
 {
-    public class UpdateRoomRequest
+    public class UpdateBookingRequest
     {
-        public string RoomTypeName { get; set; }
-        public int RoomNumber { get; set; }
+
     }
 }

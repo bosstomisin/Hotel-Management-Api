@@ -12,5 +12,6 @@ namespace Hotel_management_Api.Service.Interface
         BaseResponse<IEnumerable<BookingResponse>> GetAllBookings();
         Task<BaseResponse<BookingResponse>> GetBooking(string id);
         Task<BaseResponse<BookingResponse>> DeleteBooking(string id);
+        Task<BaseResponse<UpdateBookingResponse>> UpdateBooking(string id, BookingRequest model);
     }
 }

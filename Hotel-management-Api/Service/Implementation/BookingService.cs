@@ -88,5 +88,28 @@ namespace Hotel_management_Api.Service.Implementation
             return new BaseResponse<BookingResponse>() { Data = bookingResponse, Message = "Successful", StatusCode = 200, Success = true };
 
         }
+
+        public async Task<BaseResponse<UpdateBookingResponse>> UpdateBooking(string id, BookingRequest model)
+        {
+            if (string.IsNullOrWhiteSpace(id) || model == null)
+            {
+                return new BaseResponse<UpdateBookingResponse>() { Data = null, Message = "Incorrect id", StatusCode = 404, Success = false };
+            }
+            var booking = await _repo.GetRecord(id);
+            if (booking == null)
+            {
+                return new BaseResponse<UpdateBookingResponse>() { Data = null, Message = "Booking not found", StatusCode = 404, Success = false };
+            }
+            booking = _map.Map(model, booking);
+            booking.UpdatedDate = DateTime.Now.ToString();
+            var updateResponse = await _repo.UpdateRecord(booking);
+            if (!updateResponse)
+            {
+                return new BaseResponse<UpdateBookingResponse>() { Data = null, Message = "Operation not Successful", StatusCode = 400, Success = false };
+            }
+            var bookingResponse = _map.Map<UpdateBookingResponse>(booking);
+            return new BaseResponse<UpdateBookingResponse>() { Data = bookingResponse, Message = "Successful", StatusCode = 200, Success = true };
+
+        }
     }
 }

@@ -13,7 +13,10 @@ namespace Hotel_management_Api.Data.Dto
         public string RoomId { get; set; }
         public int Guests { get; set; }
         public decimal TotalFee { get; set; }
-        public string CheckIn { get; set; } = DateTime.Now.ToString();
-        public string ExpectedCheckOutDate { get; set; }
+       // public string ExpectedCheckOutDate { get; set; }
+        public string CheckOut { get; set; }
+        public string CheckIn { get; set; }
+
+        public string UpdatedDate { get; set; }
     }
 }

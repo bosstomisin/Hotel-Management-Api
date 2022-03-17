@@ -48,5 +48,11 @@ namespace Hotel_management_Api.Controllers
         {
             return await _booking.DeleteBooking(id);
         }
+
+        [HttpPut("update-booking/{id}")]
+        public async Task<BaseResponse<UpdateBookingResponse>> UpdateBooking(string id, BookingRequest model)
+        {
+            return await _booking.UpdateBooking(id, model);
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace Hotel_management_Api.MapperProfile
             CreateMap<Room, UpdateRoomResponse>().ReverseMap();
             CreateMap<BookingRequest, Booking>();
             CreateMap<Booking, BookingResponse>();
+            CreateMap<Booking, UpdateBookingResponse>();
 
         }
     }
