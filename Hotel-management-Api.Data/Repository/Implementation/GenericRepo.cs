@@ -38,7 +38,6 @@ namespace Hotel_management_Api.Data.Repository.Implementation
 
         }
 
-
         public async Task<T> GetRecord(string id)
         {
             return await _ctx.Set<T>().FindAsync(id);
