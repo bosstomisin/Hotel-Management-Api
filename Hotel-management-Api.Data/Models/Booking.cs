@@ -16,6 +16,7 @@ namespace Hotel_management_Api.Data.Models
         public Room Room { get; set; }
         public int Guests { get; set; }
         public decimal TotalFee { get; set; }
+        public Payment Payment { get; set; }
         public string UserId { get; set; }
         public AppUser User { get; set; }
         public string CheckIn { get; set; } = DateTime.Now.ToString();

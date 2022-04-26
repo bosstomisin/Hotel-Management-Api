@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 namespace Hotel_management_Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[ApiController]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
     public class BookingController : ControllerBase
     {
@@ -38,9 +38,9 @@ namespace Hotel_management_Api.Controllers
         }
 
         [HttpGet("get-booking/{id}")]
-        public async Task<BaseResponse<BookingResponse>> GetBooking(string id)
+        public async  Task<IActionResult> GetBooking(string id)
         {
-            return await  _booking.GetBooking(id);
+            return  Ok( await _booking.GetBooking(id));
         }
 
         [HttpDelete("delete-booking/{id}")]

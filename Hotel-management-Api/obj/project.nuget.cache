@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "l+cyn778vmazct3w1er0psXtXtvJ9RT7Hv/2V0zKMbtrfrE82xTkmZb9p9kbrX+iVHtFfNkMWSpozyyn/KkOLw==",
+  "dgSpecHash": "kPlX+69eRyrn2IOosw/p9Kwx7kNFXCOc8FUAtarhIb/UA7Eew4xb3o84yN7hhJtwsnxsoLDb44poR6VsQRbbaw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dell\\source\\repos\\Hotel-management-Api\\Hotel-management-Api\\Hotel-Management-Api.Core.csproj",
   "expectedPackageFiles": [
@@ -40,6 +40,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.7.1\\microsoft.identitymodel.protocols.openidconnect.6.7.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.7.1\\microsoft.identitymodel.tokens.6.7.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
