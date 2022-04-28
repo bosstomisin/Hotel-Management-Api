@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_management_Api.Service.Implementation
 {
-    public class UserService : IUserService 
+    public class UserService : IUserService
     {
         private readonly IMapper _map;
         private readonly UserManager<AppUser> _userManager;
@@ -21,7 +21,7 @@ namespace Hotel_management_Api.Service.Implementation
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IOptions<JWTConfig> _jwt;
 
-        public UserService( IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, 
+        public UserService(IMapper map, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager,
             SignInManager<AppUser> signInManager, IOptions<JWTConfig> options)
         {
             _map = map;
@@ -99,5 +99,14 @@ namespace Hotel_management_Api.Service.Implementation
             return new BaseResponse<LoginResponse>() { Data = loginRespone, Message = "Login Successful", Success = true, StatusCode = 200 };
 
         }
+
+        //public async Task<BaseResponse<UserResponse>> GetUserById(string id){
+        //    if (string.IsNullOrEmpty(id))
+        //    {
+        //        return new BaseResponse<UserResponse>() { Data = null, Message = "User not found", Success = false, StatusCode = 404 };
+        //    }
+        //    var user = await _userManager.GetUserAsync();
+        //}
+
     }
 }

@@ -10,6 +10,6 @@ namespace Hotel_management_Api.Data.Repository.Interface
 {
     public interface IPaymentRepo
     {
-        Task<BaseResponse<Payment>> MakePayment(Payment payment)
+        Task<BaseResponse<Payment>> MakePayment(Payment payment);
     }
 }

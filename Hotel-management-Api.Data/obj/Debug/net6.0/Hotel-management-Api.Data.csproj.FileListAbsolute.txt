@@ -1,0 +1,14 @@
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\bin\Debug\net6.0\Hotel-management-Api.Data.deps.json
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\bin\Debug\net6.0\Hotel-management-Api.Data.runtimeconfig.json
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\bin\Debug\net6.0\Hotel-management-Api.Data.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\bin\Debug\net6.0\Hotel-management-Api.Data.pdb
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.csproj.AssemblyReference.cache
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.AssemblyInfoInputs.cache
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.AssemblyInfo.cs
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.csproj.CoreCompileInputs.cache
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\refint\Hotel-management-Api.Data.dll
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.pdb
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\Hotel-management-Api.Data.genruntimeconfig.cache
+C:\Users\Dell\source\repos\Hotel-management-Api\Hotel-management-Api.Data\obj\Debug\net6.0\ref\Hotel-management-Api.Data.dll

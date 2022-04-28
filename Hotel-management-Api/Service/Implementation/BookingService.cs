@@ -14,11 +14,13 @@ namespace Hotel_management_Api.Service.Implementation
     {
         private readonly IBookingRepo _repo;
         private readonly IMapper _map;
+        private readonly IUserService _userService;
 
-        public BookingService(IBookingRepo repo, IMapper map)
+        public BookingService(IBookingRepo repo, IMapper map, IUserService userService)
         {
             _repo = repo;
             _map = map;
+            _userService = userService;
         }
 
         public async Task<BaseResponse<BookingResponse>> AddBooking(BookingRequest model)
@@ -27,6 +29,7 @@ namespace Hotel_management_Api.Service.Implementation
             {
                 return new BaseResponse<BookingResponse>() { Data = null, Message = "Model cannot be null", StatusCode = 204, Success = false };
             }
+           // var getUser = _userService.
             var booking =_map.Map<Booking>(model);
 
             var addResponse = await _repo.InsertRecord(booking);
